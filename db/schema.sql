@@ -4,14 +4,14 @@ CREATE TABLE department (
 );
 
 CREATE TABLE roles (
-    id INTERGER AUTO_INCREMENT PRIMARY,
+    roles_id INTERGER AUTO_INCREMENT PRIMARY,
     job_title VARCHAR(30) NOT NULL,
     department_role VARCHAR(30) NOT NULL,
     salary INTERGER(12) NOT NULL
 );
 
 CREATE TABLE employee (
-    id INTERGER AUTO_INCREMENT PRIMARY KEY,
+    employee_id INTERGER AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     job_title VARCHAR(30) NOT NULL,
