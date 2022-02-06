@@ -9,32 +9,37 @@ VALUES ('Finance');
 INSERT INTO department (name)
 VALUES ('Legal');
 
-INSERT INTO roles (job_title, department_role, salary, roles_id)
-VALUES ('Salesperson', 'Sales', 80000, 2);
-INSERT INTO roles (job_title, department_role, salary, roles_id)
-VALUES ('Lead Engineer', 'Engineering', 150000, 1);
-INSERT INTO roles (job_title, department_role, salary, roles_id)
-VALUES ('Software Engineer', 'Engineering', 120000, 1);
-INSERT INTO roles (job_title, department_role, salary, roles_id)
-VALUES ('Account Manager', 'Finance', 160000, 3);
-INSERT INTO roles (job_title, department_role, salary, roles_id)
-VALUES ('Accountant', 'Finance', 125000, 3);
-INSERT INTO roles (job_title, department_role, salary, roles_id)
-VALUES ('Legal Team Lead', 'Legal', 250000, 4);
-INSERT INTO roles (job_title, department_role, salary, roles_id)
-VALUES ('Lawyer', 'Legal', 190000, 4);
+INSERT INTO roles (job_title, department_id, salary)
+VALUES ('Sales Manager', 1 , 180000);
+INSERT INTO roles (job_title, department_id, salary)
+VALUES ('Salesperson', 1 , 80000);
+INSERT INTO roles (job_title, department_id, salary)
+VALUES ('Lead Engineer', 2, 150000);
+INSERT INTO roles (job_title, department_id, salary)
+VALUES ('Software Engineer', 2, 120000);
+INSERT INTO roles (job_title, department_id, salary)
+VALUES ('Account Manager', 3, 160000);
+INSERT INTO roles (job_title, department_id, salary)
+VALUES ('Accountant', 3, 125000);
+INSERT INTO roles (job_title, department_id, salary)
+VALUES ('Legal Team Lead', 4, 250000);
+INSERT INTO roles (job_title, department_id, salary)
+VALUES ('Lawyer', 4, 190000);
 
-INSERT INTO employee (employee_id, first_name, last_name, job_title, department, salary, reporting_manager)
-VALUES (1, 'Mike', 'Chan', 'Salesperson', 'Sales', 80000, 'John Doe');
-INSERT INTO employee (employee_id, first_name, last_name, job_title, department, salary, reporting_manager)
-VALUES (2, 'Ashley', 'Rodriguez', 'Lead Engineer', 'Engineering', 150000, null);
-INSERT INTO employee (employee_id, first_name, last_name, job_title, department, salary, reporting_manager)
-VALUES (3, 'Kevin', 'Tupik', 'Software Engineer', 'Engineering', 120000, 'Ashley Rodriguez');
-INSERT INTO employee (employee_id, first_name, last_name, job_title, department, salary, reporting_manager)
-VALUES (4, 'Kunal', 'Singh', 'Account Manager', 'Finance', 160000, null);
-INSERT INTO employee (employee_id, first_name, last_name, job_title, department, salary, reporting_manager)
-VALUES (5, 'Malia', 'Brown', 'Accountant', 'Finance', 125000, 'Kuna; Singh');
-INSERT INTO employee (employee_id, first_name, last_name, job_title, department, salary, reporting_manager)
-VALUES (6, 'Sarah', 'Lourd', 'Legal Team Lead', 'Legal', 250000, null);
-INSERT INTO employee (employee_id, first_name, last_name, job_title, department, salary, reporting_manager)
-VALUES (7, 'Tom', 'Allen', 'Lawyer', 'Legal', 190000, 'Sarah Lourd');
+
+INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
+VALUES ('John', 'Doe', 1, null);
+INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
+VALUES ('Mike', 'Chan', 1, 'John Doe');
+INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
+VALUES ('Ashley', 'Rodriguez', 2, null);
+INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
+VALUES ('Kevin', 'Tupik', 2, 'Ashley Rodriguez');
+INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
+VALUES ('Kunal', 'Singh', 3, null);
+INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
+VALUES ('Malia', 'Brown', 3, 'Kuna Singh');
+INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
+VALUES ('Sarah', 'Lourd', 4, null);
+INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
+VALUES ('Tom', 'Allen', 4, 'Sarah Lourd');

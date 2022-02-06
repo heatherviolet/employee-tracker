@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/heatherviolet/employee-tracker#readme",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3"
   }
 }

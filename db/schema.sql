@@ -1,21 +1,28 @@
 CREATE TABLE department (
-    id INTERGER AUTO_INCREMENT PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     department_name VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE roles (
-    roles_id INTERGER AUTO_INCREMENT PRIMARY,
+    roles_id INTEGER AUTO_INCREMENT PRIMARY KEY,
     job_title VARCHAR(30) NOT NULL,
-    department_role VARCHAR(30) NOT NULL,
-    salary INTERGER(12) NOT NULL
+    department_id INTEGER NOT NULL,
+    salary INTEGER(12) NOT NULL,
+    CONSTRAINT fk_department FOREIGN KEY
+    (department_id) REFERENCES department(id) 
+    ON DELETE CASCADE
 );
 
 CREATE TABLE employee (
-    employee_id INTERGER AUTO_INCREMENT PRIMARY KEY,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    job_title VARCHAR(30) NOT NULL,
-    department VARCHAR(30) NOT NULL,
-    salary INTERGER(12) NOT NULL,
-    reporting_manager VARCHAR(30)
+    roles_id INTEGER NOT NULL,
+    reporting_manager INTEGER,
+    CONSTRAINT fk_roles FOREIGN KEY
+    (roles_id) REFERENCES roles(roles_id)
+    ON DELETE CASCADE,
+    CONSTRAINT fk_manager FOREIGN KEY
+    (reporting_manager) REFERENCES employee(id)
+    ON DELETE SET NULL 
 );
