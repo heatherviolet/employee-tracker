@@ -86,3 +86,14 @@ function addADepartment() {
         message: 'What is the name of the department?'
     }).then(answer)
 }
+
+// function initiates app
+
+function init() {
+    inquirer.prompt(promptQuestions)
+    .then(function (userInput) {
+        console.log(userInput)
+    });
+};
+
+init();
