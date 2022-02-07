@@ -7,8 +7,8 @@ function viewAllDepartments() {
         db.query('SELECT * FROM department', function (err, res) {
         if (err) throw err;
         console.table(res);
-        init()
-    });
+        });
+        init();
 };
 
 // displays roles
@@ -25,7 +25,7 @@ function viewAllEmployees() {
     db.query('SELECT * FROM employee', function (err, res) {
     if (err) throw error;
     console.table(res);
-    init()
+    init();
 });
 };
 
@@ -35,15 +35,17 @@ function addADepartment() {
         type: 'input',
         name: 'departments',
         message: 'What is the name of the department?'
-    }
-    ).then(function (answer) {
-        const departments = answer.departments
-        db.query('INSERT INTO department (departments) VALUES ( ? )', departments, (err, res) => {
-            if (err) throw err;
-
-            console.log('Department: ' + departments);
+    }).then(function (answer) {
+        const departments = answer.departments;
+        const query = `INSERT INTO department (department_name) VALUES (department_name)' VALUES ('${departments}')`;
+        db.query(query, function (err, res) {
+            if (err) {
+                throw err;
+            }
+            console.log(answer);
             init();
-        });
+        }); 
+        
     });
 }
 
@@ -90,10 +92,10 @@ function addARole() {
             }
         }, 
     ]).then(function(answer) {
-        const role = answer.job_title;
-        const roleSalary = answer.salary;
-        const roleDepartment = answer.department_id;
-        const query = `INSERT INTO roles (role, roleSalary, roleDepartment) VALUES ('${role}', '${roleSalary}', '${roleDepartment}')`;
+        const job_title = answer.roleName;
+        const salary = answer.roleSalary;
+        const department_id = answer.roleDepartment;
+        const query = `INSERT INTO roles (job_title, salary, department_id) VALUES ('${job_title}', '${salary}', '${department_id}')`;
         db.query(query, function (err, res) {
             if (err) {
                 throw err;
@@ -151,8 +153,79 @@ function addAnEmployee() {
         name: 'manager',
         message: 'What is the manager\'s name?'
     }, 
-]);
+]).then(function(answer) {
+    const first_name = answer.firstName;
+    const last_name = answer.lastName;
+    const roles_id = answer.employeeRole;
+    const reporting_manager = answer.manager;
+    const query = `INSERT INTO employee (first_name, last_name, roles_id, reporting_manager) VALUES ('${first_name}', '${last_name}', '${roles_id}', '${reporting_manager}')`;
+    db.query(query, function (err, res) {
+        if (err) {
+            throw err;
+        }
+        console.log(answer);
+        init();
+    });     
+});
 }
+
+// update employee role
+
+function updateAnEmployeeRole() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'eFirstName',
+            message: 'What is the first name?',
+            validate: eFirstName => {
+                if (eFirstName) {
+                return true;
+                } else {
+                console.log('Please enter a first name!');
+                return false;
+                }
+            }
+        }, 
+        {
+            type: 'input',
+            name: 'eLastName',
+            message: 'What is the last name?',
+            validate: eLastName => {
+                if (eLastName) {
+                return true;
+                } else {
+                console.log('Please enter a last name!');
+                return false;
+                }
+            }
+        }, 
+        {
+            type: 'input',
+            name: 'updateRole',
+            message: 'What is the updated role ID?',
+            validate: updateRole => {
+                if (updateRole) {
+                return true;
+                } else {
+                console.log('Please enter an updated role!');
+                return false;
+                }
+            }
+        }, 
+    ]).then(function (answer) {
+        const first_name = answer.first_name;
+        const last_name = answer.last_name;
+        const updateRole = answer.updateRole;
+        const query = `UPDATE employee SET roles_id = '${updateRole}' WHERE id = '${first_name}','${last_name}''`;
+        db.query(query, function (err, res) {
+            if (err) {
+                throw err;
+            }
+            console.table(answer);
+            init();
+        })
+    });
+    }
 
 // function initiates app
 
