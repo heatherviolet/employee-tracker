@@ -4,7 +4,7 @@ const db = require('./db/database.js');
 
 // displays departments
 function viewAllDepartments() {
-    db.query('SELECT * FROM department', function (err, res) {
+        db.query('SELECT * FROM department', function (err, res) {
         if (err) throw error;
         console.table(res);
         promptQuestions()
@@ -85,7 +85,7 @@ function addARole() {
         const roleSalary = answer.roleSalary;
         const roleDepartment = answer.roleDepartment;
         const query = `INSERT INTO role (job_title, salary, departmanet_id) VALUES ('${role}', '${roleSalary}', '${roleDepartment}')`;
-        db.query(query, function (err, re) {
+        db.query(query, function (err, res) {
             if (err) {
                 throw err;
             }
@@ -142,7 +142,8 @@ function addAnEmployee() {
         name: 'manager',
         message: 'What is the manager\'s name?'
     }, 
-]).then
+]);
+}
 
 // function initiates app
 
