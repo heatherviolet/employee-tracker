@@ -216,7 +216,7 @@ function updateAnEmployeeRole() {
         const first_name = answer.first_name;
         const last_name = answer.last_name;
         const updateRole = answer.updateRole;
-        const query = `UPDATE employee SET roles_id = '${updateRole}' WHERE id = '${first_name}','${last_name}''`;
+        const query = `UPDATE employee SET roles_id = ? WHERE first_name =,'${last_name}''`;
         db.query(query, function (err, res) {
             if (err) {
                 throw err;

@@ -30,16 +30,16 @@ VALUES ('Lawyer', 4, 190000);
 INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
 VALUES ('John', 'Doe', 1, null);
 INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
-VALUES ('Mike', 'Chan', 1, 'John Doe');
+VALUES ('Mike', 'Chan', 1, 1);
 INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
 VALUES ('Ashley', 'Rodriguez', 2, null);
 INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
-VALUES ('Kevin', 'Tupik', 2, 'Ashley Rodriguez');
+VALUES ('Kevin', 'Tupik', 2, 2);
 INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
 VALUES ('Kunal', 'Singh', 3, null);
 INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
-VALUES ('Malia', 'Brown', 3, 'Kuna Singh');
+VALUES ('Malia', 'Brown', 3, 3);
 INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
 VALUES ('Sarah', 'Lourd', 4, null);
 INSERT INTO employee (first_name, last_name, roles_id, reporting_manager)
-VALUES ('Tom', 'Allen', 4, 'Sarah Lourd');
+VALUES ('Tom', 'Allen', 4, 4);
