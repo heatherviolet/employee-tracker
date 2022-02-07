@@ -5,19 +5,19 @@ const db = require('./db/database.js');
 // displays departments
 function viewAllDepartments() {
         db.query('SELECT * FROM department', function (err, res) {
-        if (err) throw error;
+        if (err) throw err;
         console.table(res);
-        promptQuestions()
+        init()
     });
 };
 
 // displays roles
 function viewAllRoles() {
     db.query('SELECT * FROM roles', function (err, res) {
-    if (err) throw error;
+    if (err) throw err;
     console.table(res);
-    promptQuestions()
-});
+    });
+    init();
 };
 
 // displays employees
@@ -25,7 +25,7 @@ function viewAllEmployees() {
     db.query('SELECT * FROM employee', function (err, res) {
     if (err) throw error;
     console.table(res);
-    promptQuestions()
+    init()
 });
 };
 
@@ -33,9 +33,18 @@ function viewAllEmployees() {
 function addADepartment() {
     inquirer.prompt({
         type: 'input',
-        name: 'department',
+        name: 'departments',
         message: 'What is the name of the department?'
-    }).then(answer)
+    }
+    ).then(function (answer) {
+        const departments = answer.departments
+        db.query('INSERT INTO department (departments) VALUES ( ? )', departments, (err, res) => {
+            if (err) throw err;
+
+            console.log('Department: ' + departments);
+            init();
+        });
+    });
 }
 
 // add a role
@@ -81,15 +90,15 @@ function addARole() {
             }
         }, 
     ]).then(function(answer) {
-        const role = answer.roleName;
-        const roleSalary = answer.roleSalary;
-        const roleDepartment = answer.roleDepartment;
-        const query = `INSERT INTO role (job_title, salary, departmanet_id) VALUES ('${role}', '${roleSalary}', '${roleDepartment}')`;
+        const role = answer.job_title;
+        const roleSalary = answer.salary;
+        const roleDepartment = answer.department_id;
+        const query = `INSERT INTO roles (role, roleSalary, roleDepartment) VALUES ('${role}', '${roleSalary}', '${roleDepartment}')`;
         db.query(query, function (err, res) {
             if (err) {
                 throw err;
             }
-            console.table(answer);
+            console.log(answer);
             init();
         });  
     });
